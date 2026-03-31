@@ -74,6 +74,8 @@ done
 # List of skill tests to run (fast unit tests)
 tests=(
     "test-subagent-driven-analysis.sh"
+    "test-executing-plans.sh"
+    "test-verification-before-delivery.sh"
 )
 
 # Integration tests (slow, full execution)

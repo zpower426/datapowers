@@ -1,0 +1,1 @@
+The pipeline is throwing a KeyError on the tenure_months column after the merge step. The model was working yesterday but now predictions are way off. Help me figure out what's broken.

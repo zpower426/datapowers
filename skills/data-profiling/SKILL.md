@@ -304,3 +304,23 @@ Before injecting profile into any subagent prompt:
 - Skip profiling because "the dataset is small" — the discipline is the point
 - Profile only numeric columns (categorical distributions matter)
 - Use the profile from a previous session without verifying data hasn't changed
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Profile generated | Call `update_manifest("data_profiling", {...})` |
+
+**Fields to write after data-profiling:**
+
+```python
+update_manifest("data_profiling", {
+    "profile_path": "artifacts/data_profile.md",
+    "target_col": "<target column name or null>",
+    "n_rows": <int>,
+    "n_cols": <int>,
+    "hidden_nulls_found": ["col_a", "col_b"],  # empty list if none
+})
+```
+
+> Subagent dispatches must reference `manifest["data_profiling"]["profile_path"]` to inject the profile — do NOT hard-code the path.

@@ -147,3 +147,12 @@ Before saving the plan:
 - Skip the verification step for any task
 - Write tasks that require reading the design doc to understand
 - Estimate tasks as "a few hours" — all tasks must have explicit time estimates
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Plan written and user-approved | No direct manifest write — plan is referenced by `executing-plans` or `subagent-driven-analysis` |
+| Read before writing | Call `read_manifest()` to confirm `brainstorming.primary_metric` is non-null before writing tasks |
+
+> The plan file path (`docs/datapowers/plans/YYYY-MM-DD-<topic>-plan.md`) is referenced by `executing-plans` at runtime. Ensure the path is stable and matches what will be committed.

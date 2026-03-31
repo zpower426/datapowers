@@ -1,0 +1,1 @@
+We have an approved design doc and need to plan out all the tasks for the churn analysis. I want to run multiple tasks in parallel using separate agents for each task.

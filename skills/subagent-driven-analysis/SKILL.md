@@ -168,3 +168,22 @@ Reason: if the statistics are wrong, the code quality is irrelevant. Fix correct
 - Allow subagent to evaluate on test set unless the task explicitly calls for it
 - Make subagent read the full plan — provide only the specific task text
 - Ignore BLOCKED status without addressing the root cause
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Plan loaded | `read_manifest()` to check completed stages and skip already-done tasks |
+| Each task completes | Read `manifest["data_profiling"]["profile_path"]` to inject correct profile into analyst prompts |
+| Stat review BLOCKED | Append the block to `manifest["warnings"]` |
+| All tasks done | Call `update_manifest` for the relevant pipeline stage; then trigger `finishing-an-analysis-branch` |
+
+```python
+# Before dispatching ANY analyst subagent, read the profile path from manifest
+manifest = read_manifest()
+profile_path = manifest["data_profiling"]["profile_path"]
+profile_text = Path(profile_path).read_text()
+# Inject profile_text into the analyst prompt — never pass raw data rows
+```
+
+> All manifest writes for specific pipeline stages (feature_engineering, model_selection, etc.) happen inside the analyst subagents, which call `update_manifest()` as part of their task completion.

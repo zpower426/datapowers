@@ -1,0 +1,1 @@
+We have a trained LightGBM model. Now evaluate it on the held-out test set, compute bootstrap confidence intervals on F1, and produce a SHAP summary plot.

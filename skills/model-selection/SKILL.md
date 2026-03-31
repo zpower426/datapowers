@@ -11,6 +11,13 @@ Systematic selection of the best model through baseline comparison and rigorous 
 
 <HARD-GATE>
 Do NOT tune a single model without first establishing baselines for multiple model families. Do NOT select a model based on accuracy alone for imbalanced classification tasks.
+
+Do NOT begin model selection if `test-driven-data-science` has not been run. Check the manifest:
+```python
+manifest = read_manifest()
+assert manifest["data_validation"].get("decision") not in (None, "BLOCKED"), \
+    "BLOCKED: test-driven-data-science must PASS before model selection. Run it first."
+```
 </HARD-GATE>
 
 ## Checklist
@@ -199,3 +206,28 @@ Save to `docs/datapowers/models/YYYY-MM-DD-model-selection.md`:
 - Tune a single model without comparing baselines
 - Run fewer than 50 HPO trials on a non-trivial dataset
 - Use grid search when dataset > 10,000 rows (use Optuna)
+- Begin model selection before `data_validation.decision` is `"PROCEED"` in the manifest
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Before starting | Call `check_metric_consistency()` to verify primary_metric hasn't changed |
+| Model selected | Call `update_manifest("model_selection", {...})` |
+
+**Fields to write after model-selection:**
+
+```python
+# Step 0: verify metric consistency before touching any model code
+check_metric_consistency()  # raises if primary_metric was changed
+
+# After selection:
+update_manifest("model_selection", {
+    "chosen_model": "LightGBM",
+    "baseline_score": 0.612,   # dummy classifier score
+    "best_cv_score": 0.781,
+    "hpo_trials": 50,
+})
+```
+
+> `check_metric_consistency()` is mandatory — it prevents silent metric drift between brainstorming and model selection.

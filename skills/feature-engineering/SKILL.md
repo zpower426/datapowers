@@ -222,3 +222,25 @@ After all transformations, run `datapowers:data-validation` on the output:
 - One-hot encode high-cardinality features (> 100 categories)
 - Skip the feature registry or leave features as `pending_review` before training
 - Use target encoding outside of cross-validation
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Feature engineering complete | Call `update_manifest("feature_engineering", {...})` |
+
+**Fields to write after feature-engineering:**
+
+```python
+update_manifest("feature_engineering", {
+    "registry_path": "docs/datapowers/features/YYYY-MM-DD-feature-registry.md",
+    "n_features": len(X_train.columns),
+    "transformer_paths": [
+        "artifacts/transformers/imputer.pkl",
+        "artifacts/transformers/scaler.pkl",
+        "artifacts/transformers/ohe.pkl",
+    ],
+})
+```
+
+> `verification-before-delivery` loads each path in `transformer_paths` via `joblib.load()` to confirm artifacts are intact. Use exact paths that match what was saved.

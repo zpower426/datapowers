@@ -231,3 +231,23 @@ Save to `docs/datapowers/evaluation/YYYY-MM-DD-<model>-evaluation.md`:
 - Claim model "works" without statistical comparison to baseline
 - Ignore high-confidence errors
 - Ship model with Brier Score > 0.30 without explicit business sign-off
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Test set evaluated | Call `update_manifest("model_evaluation", {...})` immediately after — marks `test_evaluated: true` |
+
+**Fields to write after model-evaluation:**
+
+```python
+update_manifest("model_evaluation", {
+    "test_evaluated": True,  # CRITICAL: set this flag — it gates verification-before-delivery
+    "final_score": 0.781,   # primary metric value (matches primary_metric declared in brainstorming)
+    "ci_lower": 0.762,
+    "ci_upper": 0.799,
+    "shap_path": "artifacts/shap_summary.png",
+})
+```
+
+> `test_evaluated: True` is the lock. `verification-before-delivery` checks this field — if False, delivery is blocked.

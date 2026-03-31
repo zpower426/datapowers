@@ -1,0 +1,1 @@
+We need to build the feature set for the churn model. Create encoded categorical features and scaled numeric features. Make sure no leakage from the target variable.

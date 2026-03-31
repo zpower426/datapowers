@@ -196,3 +196,25 @@ Save to `docs/datapowers/debugging/YYYY-MM-DD-<issue>.md`.
 - Change multiple things simultaneously (makes causality impossible to isolate)
 - Close a debugging session without documenting root cause
 - Assume performance degradation is a model problem before checking data
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Bug confirmed | Append to `manifest["warnings"]` with root cause and fix status |
+| Fix verified | Update the warning entry with `"resolved": true` |
+
+```python
+# Record debugging investigation
+manifest["warnings"].append({
+    "type": "pipeline_bug",
+    "description": "<root cause in one sentence>",
+    "affected_stages": ["feature_engineering"],
+    "fix_applied": "<what was changed>",
+    "resolved": True,
+    "timestamp": datetime.now(timezone.utc).isoformat(),
+})
+Path(manifest_path).write_text(json.dumps(manifest, indent=2))
+```
+
+> Unresolved warnings in the manifest will block `verification-before-delivery`. Always resolve or explicitly document why a warning is acceptable.

@@ -1,0 +1,1 @@
+The churn analysis is complete and all results are ready. Before I share these with the business team, I want to make sure everything is verified, reproducible, and statistically sound.

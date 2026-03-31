@@ -172,3 +172,19 @@ git commit -m "analysis: add [topic] report with [key finding]"
 - Make recommendations without specifying who owns the action
 - Publish a report without a reproducibility header (code version, data snapshot, seeds)
 - Claim causation from observational data
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Report written and saved | Call `update_manifest("report", {...})` |
+
+**Fields to write after report-writing:**
+
+```python
+update_manifest("report", {
+    "report_path": "docs/datapowers/reports/YYYY-MM-DD-<topic>-report.md",
+})
+```
+
+> `verification-before-delivery` checks `manifest["report"]["report_path"]` to confirm delivery artifact exists. Save the report to the exact path you record here.

@@ -129,3 +129,13 @@ Overlapping trigger descriptions cause skills to compete. Before writing a new d
 - Submit a skill that produces identical output on balanced vs extreme-imbalance data
 - Use "should" or "consider" in a step — every step is either mandatory or it's not a step
 - Add a skill that duplicates trigger conditions of an existing skill without deprecating the old one
+
+## Manifest Integration
+
+This is a meta-skill for authoring new skills — it does not participate in the analysis pipeline manifest.
+
+| Action | Manifest update |
+|--------|---------------|
+| New skill written | No manifest write — skills are library artifacts, not analysis artifacts |
+
+> When this skill is used during an active analysis session, update `manifest["warnings"]` with a note that a new skill is being authored, so the analysis coordinator knows the session is paused for tooling work.

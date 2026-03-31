@@ -224,3 +224,21 @@ For Option 3: Keep worktree.
 **Pairs with:**
 - `verification-before-delivery` — run this first if delivery status is uncertain
 - `analysis-manifest` — read manifest state before presenting options
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Before presenting options | `read_manifest()` to check incomplete stages and unresolved warnings |
+| Option 1 or 2 chosen (commit/PR) | Write `manifest["delivered_at"]` and `manifest["delivery_verified"] = True` |
+| Option 4 (archive) | Copy manifest to archive dir; no manifest write needed |
+
+```python
+# After delivery commit (Options 1 or 2)
+manifest["delivered_at"] = datetime.now(timezone.utc).isoformat()
+manifest["delivery_verified"] = True
+manifest["last_updated"] = datetime.now(timezone.utc).isoformat()
+Path("artifacts/analysis_manifest.json").write_text(json.dumps(manifest, indent=2))
+```
+
+> Do NOT record `delivered_at` before committing all artifacts — the commit must include the manifest with this timestamp.

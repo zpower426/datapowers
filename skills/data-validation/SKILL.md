@@ -182,3 +182,23 @@ DECISION: [BLOCK | PROCEED WITH WARNINGS | PROCEED]
 - Skip validation for "a quick test run"
 - Validate only on training data but not on test/production data
 - Silently coerce types without logging what was changed
+
+## Manifest Integration
+
+This skill shares the `data_validation` manifest stage with `test-driven-data-science`. Both write to the same stage — run `data-validation` first (structural), then `test-driven-data-science` (statistical). The final `update_manifest` call should reflect the combined verdict.
+
+| Action | Manifest update |
+|--------|---------------|
+| Structural validation complete | Hold result in memory; do not write yet |
+| `test-driven-data-science` also passes | Call `update_manifest("data_validation", {...})` with combined decision |
+
+**Fields to write (after both skills complete):**
+
+```python
+update_manifest("data_validation", {
+    "tdds_report_path": "artifacts/tdds_report.json",
+    "decision": "APPROVED",  # or "BLOCKED" if either structural or TDDS failed
+})
+```
+
+> If you only run `data-validation` without `test-driven-data-science`, still write `decision: "APPROVED"` with a note in `manifest["warnings"]` that statistical layer was skipped.

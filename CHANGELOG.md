@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0] - 2026-03-31
+
+### Added
+
+- **`Manifest Integration` sections** — all 20 skills now contain a standardized `## Manifest Integration` section specifying exactly which `update_manifest()` fields to write, and when. Eliminates ambiguity about when manifest writes occur across the pipeline.
+- **Skill triggering tests (14 new)** — `tests/skill-triggering/prompts/` now covers all 20 skills (was 6). Added prompts for: `analysis-manifest`, `data-exploration`, `data-validation`, `debugging-pipelines`, `feature-engineering`, `finishing-an-analysis-branch`, `model-evaluation`, `model-selection`, `report-writing`, `subagent-driven-analysis`, `test-driven-data-science`, `verification-before-delivery`, `writing-data-skills`. Updated `run-all.sh` SKILLS array to match.
+
+### Changed
+
+- **`executing-plans/SKILL.md`** — Full rewrite from 36-line skeleton to standards-compliant skill (~250 lines). Added: Iron Law, HARD-GATE, task state machine (PENDING→IN_PROGRESS→STAT_REVIEW→CODE_REVIEW→DONE), step-by-step procedure with code, output verification pattern, anti-pattern detector for `iterrows` and missing seeds, Manifest Integration, Self-Review Checklist, Anti-Patterns.
+- **`verification-before-delivery/SKILL.md`** — Full rewrite from 38-line skeleton to three-stage verification skill (~200 lines). Added: Iron Law, HARD-GATE, Stage 1 (artifact integrity with `joblib.load` validation), Stage 2 (statistical evidence audit checking CIs, primary metric pre-declaration, test_evaluated flag), Stage 3 (reproducibility re-run with subprocess), delivery log template, Manifest Integration.
+- **`model-selection/SKILL.md`** — Added HARD-GATE requiring `test-driven-data-science` to pass (`data_validation.decision == "APPROVED"`) before model selection begins. Added Manifest Integration with `check_metric_consistency()` call. Added Anti-Pattern for beginning model selection before TDDS.
+
 ## [1.1.0] - 2026-03-31
 
 ### Added

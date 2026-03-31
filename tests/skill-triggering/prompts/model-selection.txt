@@ -1,0 +1,1 @@
+We need to choose between logistic regression, random forest, and LightGBM for the churn prediction task. Compare them and run hyperparameter optimization on the best candidate.

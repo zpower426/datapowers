@@ -1,0 +1,1 @@
+We need to start exploring the customer dataset for the first time. Can you do an EDA and flag any potential data quality issues or leakage candidates?

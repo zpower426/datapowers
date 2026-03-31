@@ -193,6 +193,31 @@ Save to `docs/datapowers/specs/YYYY-MM-DD-<topic>-design.md`:
 [What will NOT be done]
 ```
 
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|-----------------|
+| Brainstorming starts | Call `init_manifest(project_name)` to create `artifacts/analysis_manifest.json` |
+| Design approved | Call `update_manifest("brainstorming", {...})` with the fields below |
+
+**Fields to write after brainstorming:**
+
+```python
+update_manifest("brainstorming", {
+    "design_doc": "docs/datapowers/specs/YYYY-MM-DD-<topic>-design.md",
+    "hypotheses": [
+        "Hypothesis 1 — specific and falsifiable",
+        "Hypothesis 2",
+        "Hypothesis 3",
+    ],
+    "primary_metric": "<metric name declared here — lock this>",
+    "baseline_expectation": "<what logistic regression is expected to score>",
+    "validation_strategy": "<split strategy: random/time-based, ratios, split point>",
+})
+```
+
+> Do NOT proceed to `writing-analysis-plans` until `brainstorming.primary_metric` is non-null in the manifest.
+
 ## Self-Review Checklist
 
 Before asking user to review the written design, check:
@@ -206,3 +231,4 @@ Before asking user to review the written design, check:
 - [ ] Are evaluation metrics appropriate for the task type?
 - [ ] Is "out of scope" explicitly stated?
 - [ ] Are there any undefined terms or jargon?
+- [ ] Has `init_manifest()` been called and `update_manifest("brainstorming", ...)` written with all required fields?

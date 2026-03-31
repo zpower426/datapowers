@@ -45,3 +45,12 @@ Before declaring the task DONE, the reviewer must check:
 ## The Iron Law
 
 **NO CONCLUSIONS WITHOUT STATISTICAL SIGNIFICANCE TESTING.**
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| Review dispatched | Read-only — do NOT write to manifest here |
+| BLOCKED outcome | The invoking skill (`executing-plans` or `subagent-driven-analysis`) appends to `manifest["warnings"]` |
+
+> This skill does not write to the manifest directly. Its verdicts (APPROVED / ISSUES FOUND / BLOCKED) are consumed by `executing-plans` or `subagent-driven-analysis`, which write the result to `manifest["warnings"]` or `manifest["tasks"]`.

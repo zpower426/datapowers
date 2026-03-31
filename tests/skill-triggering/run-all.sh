@@ -8,12 +8,32 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROMPTS_DIR="$SCRIPT_DIR/prompts"
 
 SKILLS=(
+    # Phase 0 — Entry & State
+    "analysis-manifest"
+    # Phase 1 — Design
     "brainstorming"
-    "data-profiling"
-    "leakage-guard"
-    "executing-plans"
-    "requesting-statistical-review"
     "writing-analysis-plans"
+    # Phase 2 — Data Understanding
+    "data-profiling"
+    "data-exploration"
+    "data-validation"
+    # Phase 3 — Feature Engineering & Modeling
+    "leakage-guard"
+    "feature-engineering"
+    "test-driven-data-science"
+    "model-selection"
+    "model-evaluation"
+    # Phase 4 — Execution & Review
+    "executing-plans"
+    "subagent-driven-analysis"
+    "requesting-statistical-review"
+    "debugging-pipelines"
+    # Phase 5 — Delivery
+    "verification-before-delivery"
+    "report-writing"
+    "finishing-an-analysis-branch"
+    # Meta
+    "writing-data-skills"
 )
 
 echo "=== Running Skill Triggering Tests ==="

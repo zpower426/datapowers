@@ -246,3 +246,21 @@ Save to `docs/datapowers/eda/YYYY-MM-DD-<dataset>-eda.md`:
 - Ignore leakage candidates without documenting the decision
 - Report column statistics without checking for sentinel values
 - Assume correlations imply causation
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| EDA report saved | Call `update_manifest("data_exploration", {...})` |
+
+**Fields to write after data-exploration:**
+
+```python
+update_manifest("data_exploration", {
+    "eda_report_path": "docs/datapowers/eda/YYYY-MM-DD-<dataset>-eda.md",
+    "quality_score": 78,   # overall dataset quality score 0-100
+    "leakage_candidates": ["col_x", "col_y"],  # from Section 8
+})
+```
+
+> `leakage_candidates` from EDA feeds directly into `leakage-guard`. If this list is non-empty, `leakage-guard` must run before feature engineering.

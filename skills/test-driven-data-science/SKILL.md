@@ -240,3 +240,20 @@ Before calling `model.fit()`:
 - Catch TDDS exceptions silently — let them surface and block
 - Reuse a reference baseline from > 30 days ago without verifying it's still valid
 - Run TDDS after calling `model.fit()` — it must run BEFORE
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|---------------|
+| TDDS run completes | Call `update_manifest("data_validation", {...})` |
+
+**Fields to write after test-driven-data-science:**
+
+```python
+update_manifest("data_validation", {
+    "tdds_report_path": "artifacts/tdds_report.json",
+    "decision": "APPROVED",  # or "BLOCKED"
+})
+```
+
+> `model-selection` HARD-GATE checks `manifest["data_validation"]["decision"]`. If not `"APPROVED"`, model selection is blocked.

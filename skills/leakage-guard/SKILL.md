@@ -294,3 +294,20 @@ def generate_leakage_report(
 - Use random KFold on monthly sales data, click streams, or any panel data
 - Clear a leakage suspect with "probably fine" — write the actual reasoning
 - Run the leakage guard after model training to "verify post-hoc"
+
+## Manifest Integration
+
+| Action | Manifest update |
+|--------|-----------------|
+| Leakage audit complete | Call `update_manifest("leakage_guard", {...})` |
+
+**Fields to write after leakage-guard:**
+
+```python
+update_manifest("leakage_guard", {
+    "report_path": "artifacts/leakage_guard_report.json",
+    "decision": "APPROVED",  # or "NEEDS_HUMAN_REVIEW" or "BLOCKED"
+})
+```
+
+> Do NOT proceed to `feature-engineering` or model training if `leakage_guard.decision` is `"BLOCKED"`.

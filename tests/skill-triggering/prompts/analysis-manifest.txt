@@ -1,0 +1,1 @@
+We've completed brainstorming and have an approved design doc at docs/datapowers/specs/2026-03-31-churn-design.md. Where are we in the analysis? What stages are done and what's next?
