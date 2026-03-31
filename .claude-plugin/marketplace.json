@@ -1,0 +1,18 @@
+{
+  "name": "datapowers-dev",
+  "description": "Development marketplace for datapowers data mining skills library",
+  "owner": {
+    "name": "datapowers contributors"
+  },
+  "plugins": [
+    {
+      "name": "datapowers",
+      "description": "Data mining skills library: EDA, validation, feature engineering, modeling, and proven analytical workflows",
+      "version": "1.1.0",
+      "source": "./",
+      "author": {
+        "name": "datapowers contributors"
+      }
+    }
+  ]
+}

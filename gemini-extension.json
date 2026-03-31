@@ -1,0 +1,6 @@
+{
+  "name": "datapowers",
+  "description": "Professional Data Mining & ML Workflow: Hypothesis-driven design, leakage-guard, three-layer validation, and statistical rigor.",
+  "version": "1.1.0",
+  "contextFileName": "GEMINI.md"
+}

@@ -1,0 +1,1 @@
+Before we start training the model, I want to make sure there's no data leakage in the feature pipeline. Can you audit the feature window and split?

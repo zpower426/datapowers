@@ -1,0 +1,1 @@
+Skip the brainstorming, I already know what I want to analyze. Just run the analysis plan at docs/datapowers/plans/churn-analysis.md

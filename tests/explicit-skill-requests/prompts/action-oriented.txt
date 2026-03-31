@@ -1,0 +1,1 @@
+Analyze this churn dataset for me. The data is in data/customers.csv and the target is "churned". We have multiple steps — profiling, feature engineering, and model selection.

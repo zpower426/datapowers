@@ -1,0 +1,1 @@
+The brainstorming is done and the design spec is at docs/datapowers/specs/churn-analysis.md. I need a detailed analysis plan to implement it.

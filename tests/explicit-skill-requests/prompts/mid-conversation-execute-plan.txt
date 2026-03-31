@@ -1,0 +1,1 @@
+We've finished brainstorming and writing the analysis plan. Now let's execute the plan using subagent-driven-analysis.

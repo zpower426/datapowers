@@ -1,0 +1,18 @@
+{
+  "name": "datapowers",
+  "version": "1.2.0",
+  "description": "Professional Data Mining & ML skills for Claude Code. Hypothesis-driven design, leakage-guard, three-layer validation, and statistical rigor.",
+  "engines": {
+    "node": ">=24"
+  },
+  "keywords": [
+    "claude-code",
+    "skills",
+    "data-science",
+    "machine-learning",
+    "statistical-rigor",
+    "data-mining"
+  ],
+  "author": "datapowers-community",
+  "license": "MIT"
+}

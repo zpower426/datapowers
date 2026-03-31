@@ -1,0 +1,1 @@
+I need to analyze customer churn for a SaaS company. We have 18 months of subscription data with features like plan type, tenure, support calls, and payment history. What hypotheses should I test and how should I approach this?

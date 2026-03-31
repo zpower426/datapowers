@@ -1,0 +1,1 @@
+The analysis plan is ready at docs/datapowers/plans/churn-analysis.md. Let's start executing the tasks.

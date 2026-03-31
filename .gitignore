@@ -1,0 +1,9 @@
+.worktrees/
+.private-journal/
+.claude/
+.DS_Store
+node_modules/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+artifacts/
